@@ -8,7 +8,7 @@ namespace DAQ
     public partial class Form1 : Form
     {
         private readonly Random random = new Random();
-        StreamWriter writer = new StreamWriter("data.csv");
+        StreamWriter writer = new StreamWriter("C:\\Users\\Public\\Documents\\data.csv");
 
         //ADC converter is 8bits
         private float analogResolution= 10f / 254f;
@@ -88,6 +88,9 @@ namespace DAQ
 
         private void writeToFile() 
         {
+            DateTime now = DateTime.Now;
+            string formattedDate = now.ToString("yyyy-MM-dd HH:mm:ss");
+            dataForFile = formattedDate + ","+ dataForFile;
             writer.WriteLine(dataForFile);
         }
     }
