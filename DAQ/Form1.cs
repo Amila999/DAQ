@@ -2,6 +2,7 @@
 using System.Linq;
 using System.Windows.Forms;
 using System.IO;
+using System.Globalization;
 
 namespace DAQ
 {
@@ -52,7 +53,7 @@ namespace DAQ
                 TextBox textBox = this.Controls.Find("txtAnalog"+i.ToString(),true).FirstOrDefault() as TextBox;
                 analogValue = adc * analogResolution - 5;
                 textBox.Text = analogValue.ToString();
-                dataForFile = dataForFile + analogValue.ToString() + ",";
+                dataForFile = dataForFile + analogValue.ToString(CultureInfo.InvariantCulture) + ",";
             }
         }
 
@@ -64,7 +65,7 @@ namespace DAQ
                 TextBox textBox = this.Controls.Find("txtTemperature" + i.ToString(), true).FirstOrDefault() as TextBox;
                 analogValue = adc * temperatureResolution;
                 textBox.Text = analogValue.ToString();
-                dataForFile = dataForFile + analogValue.ToString() + ",";
+                dataForFile = dataForFile + analogValue.ToString(CultureInfo.InvariantCulture) + ",";
             }
         }
         private void digitalSensorValues()
@@ -77,11 +78,11 @@ namespace DAQ
                 textBox.Text = digitalValue.ToString();
                 if (i != 10)
                 {
-                    dataForFile = dataForFile + digitalValue.ToString() + ",";
+                    dataForFile = dataForFile + digitalValue.ToString(CultureInfo.InvariantCulture) + ",";
                 }
                 else 
                 {
-                    dataForFile = dataForFile + digitalValue.ToString();
+                    dataForFile = dataForFile + digitalValue.ToString(CultureInfo.InvariantCulture);
                 }
             }
         }
